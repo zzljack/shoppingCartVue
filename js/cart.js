@@ -135,6 +135,7 @@ new Vue({
     },
     deleteData(index){
       this.cartdatas.splice(index, 1);
+      this.cartView();
     }
   },
   filters:{
