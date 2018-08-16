@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+		<title>购物车</title>
+		<!--css类引用-->
+		<link rel="stylesheet" href="css/layui.css" />
+		<link rel="stylesheet" href="css/element-ui/index.css" />
+		<link rel="stylesheet" href="css/cart.css" />
+	</head>
+	<body>
+		<!--主要内容-->
+		<div class="row " id="app">
+			<h1 style="text-align:center; line-height:100px; font-size:24px;">{{title}}</h1>
+			<div class="col-lg-10 col-lg-offset-1" >
+				<div class="layui-form">
+					<table class="ShopCartTable layui-table">
+						<thead>
+							<tr>
+								<th class="selectLeft">
+									<template>
+									    <el-checkbox v-model="checkAll" @change="checkedAllBtn">全选</el-checkbox>
+									</template>
+									<span class="selectLeftGoods">商品或服务名称</span>
+								</th>
+								<th>单价</th>
+								<th>数量</th>
+								<th>小计</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(item,index) in cartdatas">
+								<td  class="selectLeft">
+									<template>
+									    <el-checkbox v-model="item.checked" @change="changeBox"></el-checkbox>
+									</template>
+									<span class="goodName">
+										<img class="goodImg" :src="item.src" />
+									</span>
+									<span class="goodName goodsName">
+										<h2 class="goodname">{{item.name}}</h2>
+										<p class="goodGary">
+											<span>供应商：</span>
+											<span>{{item.supplier}}</span>
+										</p>
+										<p class="goodGary">
+											<span>发货地：</span>
+											<span>{{item.ConPlace}}</span>
+										</p>
+									</span>
+								</td>
+								<td class="danPrice">{{item.price | priceFiler}}</td>
+								<td>
+									<i class="fa  deleteBtn" @click="reduceNum(item)" aria-hidden="true">-</i>
+									<input type="text" class="form-control numInput" v-model="item.num" aria-label="...">
+									<i class="fa  addBtn" @click="addNum(item)" aria-hidden="true">+</i>
+								</td>
+								<td>
+									<p class="totalPrice">{{item.price*item.num | priceFiler}}</p>
+								</td>
+								<td class="gongneng">
+									<p class="deletegoods" @click="alertRadio(index)">删除</p>
+									<p>移到我的收藏</p>
+									<template>
+										<p>加入收藏</p>
+									</template>
+									<template>
+										<p>取消收藏</p>
+									</template>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="row tablefooter">
+						<template>
+							<el-checkbox v-model="checkAll" @change="checkedAllBtn" style="padding-left:16px">全选</el-checkbox>
+						</template>
+						<span class="removeMuch">删除选中的商品或服务</span>
+						<span class="removeSaves">移到我的收藏</span>
+						<span class="servicenum">已选择<span class="goodsNum">{{commodityNum}}</span>件商品<span class="goodsNum">0</span>项服务</span>
+						<span class="totalclassPoin">总价：<span class="totalMoneyClass">{{totalMoney | priceFiler}}</span></span>
+						<span class="SettlementBtn">去结算</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--js类引用-->
+		<script type="text/javascript" src="js/vue/vue.min.js" ></script>
+		<script type="text/javascript" src="js/element-ui/index.js" ></script>
+		<script type="text/javascript" src="js/vue/vue-resource.js"></script>
+		<script type="text/javascript" src="js/cart.js" ></script>
+	</body>
+
+</html>
