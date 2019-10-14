@@ -61,7 +61,7 @@ var list = {
 new Vue({
   el: '#app',
   data:{
-    "title" : "购物车123",
+    "title" : "购物车",
     "totalMoney" : 0,
     "checkAll": false,
     "commodityNum":0,
@@ -140,7 +140,7 @@ new Vue({
   },
   filters:{
     priceFiler(value){
-      return '$'+value.toFixed(2);
+      return '￥'+value.toFixed(2);
     }
   }
 })
