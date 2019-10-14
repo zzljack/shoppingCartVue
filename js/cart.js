@@ -140,7 +140,7 @@ new Vue({
   },
   filters:{
     priceFiler(value){
-      return '￥'+value.toFixed(2);
+      return '$'+value.toFixed(2);
     }
   }
 })
