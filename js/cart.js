@@ -61,7 +61,7 @@ var list = {
 new Vue({
   el: '#app',
   data:{
-    "title" : "购物车",
+    "title" : "购物车1",
     "totalMoney" : 0,
     "checkAll": false,
     "commodityNum":0,
